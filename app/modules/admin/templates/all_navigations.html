@@ -1,0 +1,37 @@
+{% extends "admin_base.html" %}
+{% block content %}
+
+<div>
+    <h2>Navigation test area</h2>
+    <ul>
+        {% if navs is not none %}
+            {% for navigation in navigations recursive %}
+                <li><a href="{{navigation.link}}">{{navigation.name}}</a></li>
+                    {%if navigation.children %}
+                        <ul>{{loop(navigation.children)}}</ul>
+                    {% endif %}
+            {% endfor %}
+        {% endif %}
+    </ul>
+</div>
+<div><a href="{{url_for('admin.new_navigation')}}">New Navigation Item</a></div>
+
+<table>
+    <tr>
+        <td>Name</td>
+        <td>Link</td>
+        <td>Parent</td>
+    </tr>
+    {% if navs is not none %}
+        {% for nav in navs %}
+        <tr>
+            <td>{{nav.name}}</td>
+            <td>{{nav.link}}</td>
+            <td>{{nav.parent_name}}</td>
+            <td><a href="{{url_for('admin.edit_navigation',navigation_id=nav.id)}}">Edit</a></td>
+            <td><a href="{{url_for('admin.delete_navigation',navigation_id=nav.id)}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    {% endif %}
+</table>
+{% endblock %}

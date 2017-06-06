@@ -1,0 +1,18 @@
+{% extends "admin_base.html" %}
+{% block content %}
+<div><a href="{{url_for('admin.new_category')}}">New Category</a></div>
+<table>
+    <tr>
+        <td>Name</td>
+    </tr>
+    {% if categories is not none %}
+    {% for category in categories %}
+    <tr>
+        <td>{{category.name}}</td>
+        <td><a href="{{url_for('admin.edit_category',category_id=category.id)}}">Edit</a></td>
+        <td><a href="{{url_for('admin.delete_category',category_id=category.id)}}">Delete</a></td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+{% endblock %}

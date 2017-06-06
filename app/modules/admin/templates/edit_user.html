@@ -1,0 +1,16 @@
+{% extends "admin_base.html" %}
+{% block content %}
+<h1>Edit User - {{form.name.data}}</h1>
+<form method="POST" action="">
+    {{ form.csrf_token }}
+    <div>{{ form.name.label }}</div>
+    <div>{{ form.name(size=100) }}</div>
+    <div>{{ form.email.label }}</div>
+    <div>{{ form.email(size=100)}}</div>
+    <div>{{ form.role_id.label}}</div>   
+    <div>{{ form.role_id}}</div>   
+    <div>{{ form.password.label}}</div>   
+    <div>{{ form.password(size=100)}}</div>
+    <input type="submit" value="Update">
+</form>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block sub_title %}
+{% if title is defined %}
+{{ " Admin" + " - " + title }}
+{% endif %}
+{% endblock %}
+{% block sub_base %}
+<div class="body_wrapper">
+    <div class="row">
+        <div class="col s2 side-nav fixed grey darken-4">
+            <ul class="side-nav-items">
+                <li class="logo teal">Sporule</li>
+                <li class="bold"><a href="/admin/users/" class="waves-effect waves-teal side-nav-link">User
+                    Management</a></li>
+                <li class="bold"><a href="/admin/categories/" class="waves-effect waves-teal side-nav-link">Category
+                    Management</a></li>
+                <li class="bold"><a href="/admin/posts/" class="waves-effect waves-teal side-nav-link">Post
+                    Management</a></li>
+                <li class="bold"><a href="/admin/navigations/" class="waves-effect waves-teal side-nav-link">Navigation
+                    Management</a></li>
+            </ul>
+        </div>
+
+        <div class="col s10 offset-s2 right-col">
+            <div class="navbar-fixed">
+                <nav>
+                    <div class="nav-wrapper top-banner grey darken-4">
+                        {% if current_user.is_authenticated %}
+                        <span>Hi, {{ current_user.name }}!    </span> <a href="/admin/logout/"> Logout</a>
+                        {% endif %}
+                    </div>
+                </nav>
+            </div>
+            <div class="content-wrapper padding-all">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

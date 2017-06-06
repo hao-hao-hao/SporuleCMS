@@ -1,0 +1,13 @@
+﻿{% extends "admin_base.html" %}
+{% block content %}
+<form method="POST" action="">
+    {{ form.csrf_token }}
+    <div>{{ form.title.label }}</div>
+    <div>{{ form.title(size=100) }}</div>
+    <div>{{form.category_id.label}}</div>
+    <div>{{form.category_id}}</div>
+    <div>{{ form.content.label }}</div>
+    <div>{{ form.content(cols="100", rows="20")|safe }}</div>
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

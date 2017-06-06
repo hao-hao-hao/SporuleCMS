@@ -1,0 +1,25 @@
+{% extends "admin_base.html" %}
+{% block content %}
+{% if current_user.is_authenticated %}
+  Hi {{ current_user.name }}!
+{% endif %}
+<table>
+    <tr>
+        <td>Name</td>
+        <td>Email</td>
+        <td>Role</td>
+        <td>Posts</td>
+    </tr>
+    {% if users is not none %}
+        {% for user in users %}
+        <tr>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.role.name}}</td>
+            <td>{{user.posts.all()|length}}</td>
+            <td><a href="{{url_for('admin.edit_user',user_id=user.id)}}">Edit User</a></td>
+        </tr>
+        {% endfor %}
+    {% endif %}
+</table>
+{% endblock %}
