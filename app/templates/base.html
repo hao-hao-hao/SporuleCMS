@@ -1,21 +1,54 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Sporule CMS{% block sub_title %}{% endblock %}</title>
-    {% block script %}
-    <!--jquery-->
-    <script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
-    <!-- material js -->
-    <script src="{{ url_for('static', filename='bower_components/materialize/dist/js/materialize.js') }}"></script>
-    {% endblock %}
-    {% block style %}
-    <!-- icon css-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- material css-->
-    <link rel="stylesheet" href="{{ url_for('static', filename ='bower_components/materialize/dist/css/materialize.css')}}" >
-    <!-- custom css-->
-    <link rel="stylesheet" href="{{ url_for('static', filename ='style.css')}}">
-    {% endblock %}
-</head>
-<body>{% block sub_base %}{% endblock %}</body>
+	<head>
+		<title>Sporule CMS{% block sub_title %}{% endblock %}</title>
+		<!--font awsome icon-->
+		<script src="https://use.fontawesome.com/c26aec403d.js"></script>
+		<!--jquery-->
+		<script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
+		{% block script %}
+		{% endblock %}
+		<!--sdPure CSS-->
+		<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+		<!--[if lte IE 8]>
+			<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
+		<![endif]-->
+		<!--[if gt IE 8]><!-->
+	  	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+	  	<!--<![endif]-->
+	  	<!-- Sans Mono Font-->
+	  	<link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet">
+	  	<!-- custom css-->
+	  	<link rel="stylesheet" href="{{ url_for('static', filename ='style.css')}}">
+		{% block style %}
+	  	{% endblock %}
+	</head>
+	<body>
+		<div class='top-nav pure-menu pure-menu-horizontal'>
+			<ul class='pure-menu-list'>
+				<li class='pure-menu-item pure-menu-selected'><a href='{{url_for('front_end.all_posts')}}'>Home Page</a></li>
+				<li class='pure-menu-item'><a href='{{url_for('admin.admin_home')}}'>Admin Page</a></li>
+			</ul>
+		</div>
+		<div class='content'>
+			<div class='pure-g'>
+				<div class='pure-u-6-24 left-panel'>
+					{% block left_panel %}{% endblock %}
+				</div>
+				<div class='pure-u-18-24 right-panel'>
+					{% block right_panel %}{% endblock %}
+				</div>
+			</div>
+		</div>
+		<div class='footer'>
+			<div class = 'pure-g'>
+				<div class = 'pure-u-2-24 footer-user'>USER</div>
+				<div class = 'pure-u-10-24 footer-path'>{{ request.path }}</div>
+				<div class = 'pure-u-3-24 footer-info'>sporulecms</div>
+				<div class = 'pure-u-3-24 footer-info2'>utf-8[unix]</div>
+				<div class = 'pure-u-6-24 footer-status'>{% block status %}   90% 36/40 ln: 72{% endblock%}</div>
+			</div>
+		</div>
+
+	</body>
 </html>

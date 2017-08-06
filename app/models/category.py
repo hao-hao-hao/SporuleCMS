@@ -1,8 +1,9 @@
 from app import db
+from app.models import DB_Base
 from flask import abort
 
 
-class Category(db.Model):
+class Category(db.Model, DB_Base):
     _tablename_ = "category"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
@@ -19,12 +20,3 @@ class Category(db.Model):
         if category is None:
             abort(404)
         return category
-
-    def add_itself(self):
-        db.session.add(self)
-        db.session.commit()
-
-    def delete_itself(self):
-        db.session.delete(self)
-        db.session.commit()
-

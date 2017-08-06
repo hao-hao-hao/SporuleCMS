@@ -1,31 +1,29 @@
 from app import db
-from app.decorators import links
-from flask import abort
 from app.forms import Super_Form
 from app.helpers import Helper
 
+
 class Navigation(db.Model):
-    _tablename_="navigation"
-    id = db.Column(db.Integer,primary_key=True)
-    name = db.Column(db.String(255),nullable = False)
-    link= db.Column(db.String(255))
+    _tablename_ = "navigation"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+    link = db.Column(db.String(255))
     parent_id = db.Column(db.Integer)
-  #properties below are only for displaying the information, they are not stored in database
+    # properties below are only for displaying the information, they are not stored in database
     parent_name = ""
-    all_children=[]
+    all_children = []
     children = []
-      
 
-
-    #add itself to the database
+    # add itself to the database
     def add_itself(self):
         if self.parent_id == self.id:
-            self.parent_id=-1
-        navigation_item = Navigation(name=self.name,link=self.link,parent_id=self.parent_id)
+            self.parent_id = -1
+        navigation_item = Navigation(
+            name=self.name, link=self.link, parent_id=self.parent_id)
         db.session.add(navigation_item)
         db.session.commit()
 
-    #delete itself and all child elements from database
+    # delete itself and all child elements from database
     def delete_itself(self):
         if not Helper.is_None(self):
             children = self.get_children()
@@ -35,30 +33,30 @@ class Navigation(db.Model):
             db.session.delete(self)
             db.session.commit()
 
-    #get its children navigation items
+    # get its children navigation items
     def get_children(self):
         return (o for o in Navigation.get_all_items() if o.parent_id == self.id)
 
-    #get the name of parent navigation item
+    # get the name of parent navigation item
     def get_parent_name(self):
-        if self.parent_id !=-1:
+        if self.parent_id != -1:
             self.parent_name = Navigation.get_item_by_id(self.parent_id).name
             return self.parent_name
         return None
-        
+
     def get_higher_level_navigations(self):
         all_items = Navigation.get_all_items()
         except_items = self.get_all_children()
         except_items.append(self)
         higher_level_items = [o for o in all_items if o not in except_items]
-        default_item =  [(-1,"Top Menu")]
-        return Super_Form.get_chocies_data(higher_level_items,default_item)
+        default_item = [(-1, "Top Menu")]
+        return Super_Form.get_chocies_data(higher_level_items, default_item)
 
-    #needs to rewrite
+    # needs to rewrite
     def get_all_children(self):
         self.children = self.get_children()
-        self.all_children=[]
-        print (self.name)
+        self.all_children = []
+        print(self.name)
         for child in self.children:
             if not Helper.is_None(child):
                 self.all_children.append(child)
@@ -68,7 +66,7 @@ class Navigation(db.Model):
     @staticmethod
     def get_item_by_id(id):
         if id != -1:
-            item  = Navigation.query.get(id)
+            item = Navigation.query.get(id)
             if not Helper.is_None(item):
                 if not item.is_top_nav() and item.parent_id != item.id:
                     item.get_parent_name()
@@ -86,7 +84,7 @@ class Navigation(db.Model):
         return items
 
     def is_top_nav(self):
-        return self.parent_id ==-1
+        return self.parent_id == -1
 
     @staticmethod
     def genenrate_navigation_list(items):
@@ -95,12 +93,14 @@ class Navigation(db.Model):
         for id in parent_ids:
             parent_item = [o for o in items if o.id == id][0]
             parent_item_index = items.index(parent_item)
-            items[parent_item_index].children=[];
-            items[parent_item_index].children.extend(o for o in items if o.parent_id == id)
+            items[parent_item_index].children = []
+            items[parent_item_index].children.extend(
+                o for o in items if o.parent_id == id)
         for item in items:
             if item.is_top_nav():
                 navigations.append(item)
         return navigations
+
 
 '''archived functions
 

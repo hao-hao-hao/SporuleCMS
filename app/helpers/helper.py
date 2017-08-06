@@ -1,4 +1,6 @@
 import re
+from flask import url_for, redirect, request
+from flask_principal import UserNeed, RoleNeed
 
 
 class Helper():
@@ -14,3 +16,50 @@ class Helper():
         if to_lower:
             strings = strings.lower()
         return strings
+
+    @staticmethod
+    def register_error_handler(app):
+        """
+        Error handlers
+        """
+        @app.errorhandler(403)
+        def permission_denied(e):
+            # redirect to login page, set next parameter to the original page.
+            return redirect(url_for("admin.login", next=request.url))
+
+        @app.errorhandler(404)
+        def page_not_found(e):
+            return redirect(url_for("admin.all_posts", next=request.url))
+
+    @staticmethod
+    def registetr_blueprints(app):
+        from app.modules.admin import admin
+        app.register_blueprint(admin, url_prefix='/admin')
+        from app.modules.front_end import front_end
+        app.register_blueprint(front_end)
+
+    @staticmethod
+    def register_context_processor(app):
+        """
+        Inject objects as global template objects
+        """
+
+        @app.context_processor
+        def inject_navigation():
+            """Inject navigation into econtext_processor
+            """
+            from app.models import Navigation
+            navigations = Navigation.genenrate_navigation_list(
+                Navigation.get_all_items())
+            return dict(navigations=navigations)
+
+    @staticmethod
+    def initial_extensions(app, db, login_manager, principals, bcrypt):
+        """initialize 3rd party exntesions
+        """
+        db.init_app(app)
+        # set default redirect login page
+        login_manager.login_view = "admin.login"
+        login_manager.init_app(app)
+        principals.init_app(app)
+        bcrypt.init_app(app)

@@ -3,15 +3,18 @@ from app.decorators import links
 from flask import abort
 from flask_login import current_user
 from app.helpers import helper
+from app.models import DB_Base
 
 
-class Post(db.Model):
+class Post(db.Model, DB_Base):
     _tablename_ = "post"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=False)
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     category_id = db.Column(db.Integer, db.ForeignKey("category.id"))
+    tags = db.relationship('Tag', secondary='post_tag',
+                           backref=db.backref("posts", lazy='dynamic'))
 
     @staticmethod
     def get_all_items():
@@ -27,14 +30,10 @@ class Post(db.Model):
 
     def add_itself(self, user=current_user):
         self.user_id = user.id
-        db.session.add(self)
-        db.session.commit()
-
-    def delete_itself(self):
-        db.session.delete(self)
-        db.session.commit()
+        DB_Base.add_itself(self)
 
     def get_author(self):
+        from app.models import User
         return User.get_item_by_id(self.user_id)
 
     # generate slugified title for permanent links
