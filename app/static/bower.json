@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "jquery": "^3.1.0",
-    "pure": "^1.0.0"
+    "pure": "^1.0.0",
+    "wangEditor": "^3.0.7"
   }
 }

@@ -54,9 +54,9 @@ class User(db.Model, DB_Base):
         return None
 
     # get all the users
-    @staticmethod
-    def get_all_items():
-        return User.query.all()
+    @classmethod
+    def get_all_items(cls, page=1, per_page=10, error_out=False):
+        return cls.query.paginate(page, per_page, error_out).items
 
     # get user by user id.
     @staticmethod
@@ -104,7 +104,8 @@ class User(db.Model, DB_Base):
         # login user in Flask Login, user will be stored to current_user
         login_user(self, remember_me)
         # send user into Flask Principle to notify the identity change
-        identity_changed.send(current_app._get_current_object(), identity=Identity(self.id))
+        identity_changed.send(
+            current_app._get_current_object(), identity=Identity(self.id))
 
     # method for logout itself
     @staticmethod

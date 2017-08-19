@@ -6,6 +6,8 @@
 		<script src="https://use.fontawesome.com/c26aec403d.js"></script>
 		<!--jquery-->
 		<script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
+		<!--custom script-->
+		<script src="{{url_for('static', filename='script.js')}}"></script>
 		{% block script %}
 		{% endblock %}
 		<!--sdPure CSS-->
@@ -14,19 +16,19 @@
 			<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
 		<![endif]-->
 		<!--[if gt IE 8]><!-->
-	  	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
-	  	<!--<![endif]-->
-	  	<!-- Sans Mono Font-->
-	  	<link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet">
-	  	<!-- custom css-->
-	  	<link rel="stylesheet" href="{{ url_for('static', filename ='style.css')}}">
-		{% block style %}
-	  	{% endblock %}
+	  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+	  <!--<![endif]-->
+	  <!-- Sans Mono Font-->
+	  <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet">
+	  <!-- custom css-->
+	  <link rel="stylesheet" href="{{ url_for('static', filename ='style.css')}}">
+	  {% block style %}
+	  {% endblock %}
 	</head>
 	<body>
 		<div class='top-nav pure-menu pure-menu-horizontal'>
 			<ul class='pure-menu-list'>
-				<li class='pure-menu-item pure-menu-selected'><a href='{{url_for('front_end.all_posts')}}'>Home Page</a></li>
+				<li class='pure-menu-item pure-menu-selected'><a href='{{url_for('front_end.home')}}'>Home Page</a></li>
 				<li class='pure-menu-item'><a href='{{url_for('admin.admin_home')}}'>Admin Page</a></li>
 			</ul>
 		</div>

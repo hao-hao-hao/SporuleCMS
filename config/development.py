@@ -1,6 +1,6 @@
 # Secret key for hasing
 SECRET_KEY = 'a%6s5as6d%'
-DEBUG=True
+DEBUG = True
 # database setting
 SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://test:123@localhost/sporulecms'
 SQLALCHEMY_TRACK_MODIFICATIONS = False

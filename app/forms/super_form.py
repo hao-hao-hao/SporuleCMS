@@ -2,6 +2,7 @@ from flask_wtf import Form
 from flask import request
 from app import db
 
+
 class Super_Form(Form):
     """#preload object to the form if is a "GET" Request
     """
@@ -26,6 +27,8 @@ class Super_Form(Form):
                 setattr(obj, field, self[field].data)
             if query == "password":
                 obj.hash_password()
+            if query == 'tags':
+                obj.generate_tags()
             db.session.commit()
             return True
         else:

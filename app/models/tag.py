@@ -16,6 +16,9 @@ class Tag(db.Model, DB_Base):
     @staticmethod
     def get_item_by_id(id):
         tag = Tag.query.get(id)
-        if tag is None:
-            abort(404)
+        return tag
+
+    @staticmethod
+    def get_item_by_name(name):
+        tag = Tag.query.filter_by(name=name).first()
         return tag

@@ -44,8 +44,9 @@ def edit_post(post_id):
         post = Post.get_item_by_id(post_id)
         form.category_id.choices = [(category.id, category.name)
                                     for category in Category.get_all_items()]
+        post.tags_temp = ','.join(t.name for t in post.tags)
         form.load_object_to_form(post)
-        if form.load_form_to_object(post):
+        if form.load_form_to_object(post,query='tags'):
             return redirect(url_for("admin.all_posts"))
         return render_template("edit_post.html", form=form)
     else:
