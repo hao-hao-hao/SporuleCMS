@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block script %}
+<script src="{{ url_for('static', filename='bower_components/wangEditor/release/wangEditor.min.js') }}"></script>
+{% endblock %}
+{% block style %}
+{% endblock %}
+
+{% block sub_title %}
+{% if title is defined %}
+{{ " Admin" + " - " + title }}
+{% endif %}
+{% endblock %}
+{% block left_panel %}
+<div class="slogan">
+	" welcome ...
+</div>
+<div class="left-panel-item">
+	<a href = "{{url_for('front_end.home')}}">.. (back to home)</a>
+</div>
+<div class ='left-panel-title'>
+	/home{{request.path}}
+</div>
+<ul>
+	{% if navigations is not none %}
+		{% for navigation in navigations recursive %}
+			<li class='left-panel-item'><i class="fa fa-caret-right" aria-hidden="true"><a href="{{navigation.link}}">{{navigation.name}}</a></i></li>
+			{%if navigation.children %}
+				<ul>{{loop(navigation.children)}}</ul>
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+
+</ul>
+{% endblock %}
+{% block right_panel %}
+{% block content %}{% endblock %}
+{% endblock %}
