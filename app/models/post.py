@@ -4,6 +4,7 @@ from flask import abort
 from flask_login import current_user
 from app.helpers import Helper
 from app.models import DB_Base
+from datetime import datetime
 
 
 class Post(db.Model, DB_Base):
@@ -11,6 +12,8 @@ class Post(db.Model, DB_Base):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=False)
     content = db.Column(db.Text, nullable=False)
+    post_date = db.Column(db.DateTime)
+    edit_date = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     category_id = db.Column(db.Integer, db.ForeignKey("category.id"))
     tags = db.relationship('Tag', secondary='post_tag',
@@ -35,11 +38,12 @@ class Post(db.Model, DB_Base):
         return post
 
     def add_itself(self, user=current_user):
+        if self.post_date is None:
+            self.post_date = datetime.now()
+        else:
+            self.edit_date = datetime.now()
         self.user_id = user.id
         DB_Base.add_itself(self)
-
-    def get_author(self):
-        return self.User
 
     def generate_tags(self):
         self.tags = []
@@ -64,3 +68,8 @@ class Post(db.Model, DB_Base):
     # generate the front end view url for this post
     def url(self):
         return "front_end.post", {"post_id": self.id, "slug": self.slugified_title()}
+
+    @links.permalink_full
+    # generate the full url for this post
+    def url_full(self):
+        return "front_end.post", {'post_id': self.id}

@@ -1,3 +1,20 @@
+/* h1 to h6 */
+.post-title h1{
+	font-size:2.5em;
+	margin:0.7em 0;
+	color:#b58900;
+}
+h1{
+	color:#dc322f;
+}
+h2{
+	color:#859900;
+}
+h3{
+	color:#2aa198;
+}
+
+/* h1 to h6 end */
 html, button, input, select, textarea,
 .pure-g [class *= "pure-u"]{
 	font-family: 'Droid Sans Mono', monospace!important;
@@ -81,6 +98,25 @@ body a{
 }
 .left-panel ul i a{
 	margin:0 0 0 1em;
+}
+.post-wrapper{
+	border-style:double;
+	border-width: 0 0 3px 0;
+	margin:1em 5em;
+	padding:1em;
+}
+.post-meta{
+	border-style:dotted;
+	border-width:1px 0 1px 0;
+	margin:2em 0;
+}
+.read-more-tag{
+	text-align:right;
+}
+.read-more-tag a{
+	border-style:solid;
+	border-width: 0 0 1px 0;
+	padding: 0.1em;
 }
 .footer{
 	height:5vh;

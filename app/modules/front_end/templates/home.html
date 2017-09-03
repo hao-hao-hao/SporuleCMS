@@ -1,26 +1,31 @@
 {% extends "front_end_base.html" %}
 {% block content %}
-    {% if posts.items is not none %}
-        {% for post in posts.items %}
-	<div class="post_wrapper">
-		<div class="post_title"><a href='{{post.url()}}'><h2>{{post.title}}</a></h2></div>
-		<div class="post_meta">{{post.user.name}}</div>
+{% if posts.items is not none %}
+{% for post in posts.items %}
+<article class="post-wrapper">
+	<div class="post-title"><a href='{{post.url()}}'><h1>{{post.title}}</h1></a></div>
+	<div class="post-meta">Author: {{post.user.name}}| Category: {{post.category.name}}| Tags:
 		{% for tag in post.tags %}
 		{{tag.name}}
 		{% endfor %}
-		<div class="post_content">{{post.content|safe}}</div>
+		{% if current_user.is_owner_or_admin(post.id) %}| <a href ='{{post.edit_url()}}'>Edit</a>{% endif %}
+		| {{post.post_date}}
 	</div>
+	<div class="post-content">{{post.content[:800]|safe}}
+	</div>
+	{% if post.content|length > 500 %}<div class='read-more-tag'><a href='{{post.url()}}'>Read More.......</a></div>{% endif %}
+</article>
+{% endfor %}
+<div class="pagination">
+	{% for page in posts.iter_pages() %}
+	{% if page %}
+	{% if page != posts.page %}
+	<a href='{{url_for("front_end.home",page = page)}}'>{{page}}</a>
+	{% else %}
+	<strong>{{page}}</strong>
+	{% endif %}
+	{% endif %}
 	{% endfor %}
-	<div class="pagination">
-		{% for page in posts.iter_pages() %}
-			{% if page %}
-				{% if page != posts.page %}
-				<a href='{{url_for("front_end.home",page = page)}}'>{{page}}</a>
-				{% else %}
-				<strong>{{page}}</strong>
-				{% endif %}
-			{% endif %}
-		{% endfor %}
-	</div>
-    {% endif %}
+</div>
+{% endif %}
 {% endblock %}

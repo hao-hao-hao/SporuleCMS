@@ -8,3 +8,11 @@ def permalink(function):
         endpoint, parameters = function(*args, **kwargs)
         return url_for(endpoint, **parameters)
     return wrapper
+
+
+def permalink_full(function):
+    @wraps(function)
+    def wrapper(*args, **kwargs):
+        endpoint, parameters = function(*args, **kwargs)
+        return url_for(endpoint, **parameters, _external=True)
+    return wrapper

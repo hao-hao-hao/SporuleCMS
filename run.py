@@ -26,5 +26,5 @@ if __name__ == "__main__":
             # p = Post(title="Hello, this is the {0} post".format(str(
                 # i)), content="What an amazing Post{0}".format(str(i)), user=User.get_item_by_id(index))
             # db.session.add(p)
-#             db.session.commit()
+            # db.session.commit()
     app.run(host='0.0.0.0')

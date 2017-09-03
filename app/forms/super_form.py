@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from flask import request
+from flask import request, session
 from app import db
 
 
@@ -11,6 +11,8 @@ class Super_Form(Form):
         """ fill object to the form if is a GET request
         """
         if request.method == "GET":
+            # add referrer url to the session
+            session['referrer_url'] = request.referrer
             fields = list(self.data.keys())
             for field in fields:
                 self[field].data = getattr(obj, field)
@@ -27,8 +29,9 @@ class Super_Form(Form):
                 setattr(obj, field, self[field].data)
             if query == "password":
                 obj.hash_password()
-            if query == 'tags':
+            if query == 'post':
                 obj.generate_tags()
+                obj.add_itself()
             db.session.commit()
             return True
         else:
