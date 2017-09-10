@@ -1,35 +1,148 @@
-.side-nav
-{
-    padding:0px!important;
+/* h1 to h6 */
+.post-title h1{
+	font-size:2.5em;
+	margin:0.7em 0;
+	color:#b58900;
 }
-.side-nav-link{
-    color: white!important;
+h1{
+	color:#dc322f;
 }
-.side-nav-items a:hover{
-    background-color: rgb(0, 150, 136)!important;
+h2{
+	color:#859900;
 }
-
-.side-nav-items{
-    margin:0px!important;
-    text-align:center;
-}
-
-.logo{
-    color: white;
-    font-size: 30px;
-    height: 100px;
-    line-height: 100px!important;
-    margin-bottom: 50px;
-}
-.right-col{
-    padding:0!important;
+h3{
+	color:#2aa198;
 }
 
-/* material css */
-select{
-    display: inherit!important;
+/* h1 to h6 end */
+html, button, input, select, textarea,
+.pure-g [class *= "pure-u"]{
+	font-family: 'Droid Sans Mono', monospace!important;
 }
-/*object oriented*/
-.padding-all{
-    padding:50px!important;
+
+/*editor styling */
+.w-e-text-container{
+	height:auto!important;
+	min-height:300px;
+}
+.w-e-toolbar{
+	background-color:#272726!important;
+	border: 1px solid #a5a5a5;
+}
+
+/*editor end */
+
+/*scrollbar styling */
+.right-panel::-webkit-scrollbar,  .left-panel::-webkit-scrollbar {
+	width: 0.5em;
+}
+
+.right-panel::-webkit-scrollbar-track, .left-panel::-webkit-scrollbar {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+.right-panel::-webkit-scrollbar-thumb , .left-panel::-webkit-scrollbar {
+	background-color: darkgrey;
+	outline: 1px solid slategrey;
+}
+
+/* scrollbar styling end */
+
+body{
+	color:#aaafa9;
+	background:#272726;
+}
+body a{
+	color:#aaafa9;
+	text-decoration:none;
+}
+.top-nav{
+	font-size:1.3em;
+	height:1.4em;
+}
+.top-nav .pure-menu-list{
+	width:100%;
+	border:solid;
+	border-width:0 0 1px 0;
+}
+.top-nav .pure-menu-selected a{
+	background: #505050;
+	color: #f5f5c0;
+}
+.top-nav .pure-menu-item {
+	margin: 0 1em 0 0;
+}
+.left-panel, .right-panel, .content{
+	height:90vh;
+}
+.left-panel, .right-panel{
+	overflow-x:auto;
+	overflow-y:scroll;
+}
+.left-panel-item, .left-panel-item a{
+	color:#358bf9;
+}
+.left-panel{
+	font-size:1.3em;
+}
+.slogan{
+	color:#22dcf1;
+	margin:0  0 1em 0;
+}
+.left-panel-title{
+	color:#5da204;
+}
+.left-panel ul {
+	margin:0 0 0 0;
+	padding:0;
+	list-style-type:none;
+}
+.left-panel ul i a{
+	margin:0 0 0 1em;
+}
+.post-wrapper{
+	border-style:double;
+	border-width: 0 0 3px 0;
+	margin:1em 5em;
+	padding:1em;
+}
+.post-meta{
+	border-style:dotted;
+	border-width:1px 0 1px 0;
+	margin:2em 0;
+}
+.read-more-tag{
+	text-align:right;
+}
+.read-more-tag a{
+	border-style:solid;
+	border-width: 0 0 1px 0;
+	padding: 0.1em;
+}
+.footer{
+	height:5vh;
+	font-size:1.3em;
+}
+.footer-user, .footer-info, .footer-info2, .footer-status, .footer-info3{
+	text-align:center;
+}
+.footer-user, .footer-status, .footer-status a{
+	background: #e2f92d;
+	color: #33333c;
+	font-weight: bold;
+}
+.footer-info{
+	color: #73e49c;
+}
+.footer-path{
+	background:purple;
+	color:white;
+}
+.footer-info2{
+	background:grey;
+	color:white;
+}
+.footer-info3{
+	color: black;
+	background: #e06700;
+	font-weight: bold;
 }

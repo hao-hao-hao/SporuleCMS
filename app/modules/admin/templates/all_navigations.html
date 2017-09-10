@@ -4,7 +4,7 @@
 <div>
     <h2>Navigation test area</h2>
     <ul>
-        {% if navs is not none %}
+        {% if navigations is not none %}
             {% for navigation in navigations recursive %}
                 <li><a href="{{navigation.link}}">{{navigation.name}}</a></li>
                     {%if navigation.children %}
