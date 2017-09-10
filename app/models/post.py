@@ -50,9 +50,10 @@ class Post(db.Model, DB_Base):
         tags_list = self.tags_temp.split(',')
         from app.models import Tag
         for tag_string in tags_list:
-            tag = Tag.get_item_by_name(tag_string)
+            tag_string_cap = tag_string.strip().title()
+            tag = Tag.get_item_by_name(tag_string_cap)
             if tag is None:
-                tag = Tag(name=tag_string)
+                tag = Tag(name=tag_string_cap)
             self.tags.append(tag)
 
     # generate slugified title for permanent links

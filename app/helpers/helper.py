@@ -28,7 +28,7 @@ class Helper():
 
         @app.errorhandler(404)
         def page_not_found(e):
-            return redirect(url_for("admin.all_posts", next=request.url))
+            return redirect(url_for("front_end.home", next=request.url))
 
     @staticmethod
     def registetr_blueprints(app):

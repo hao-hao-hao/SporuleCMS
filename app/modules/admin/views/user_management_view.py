@@ -1,7 +1,7 @@
-from flask import render_template, flash, request, redirect, url_for, current_app
-from flask_login import login_user, current_user, login_required, logout_user
-from app import db, admin_permission
-from app.models import User, Role, Post
+from flask import render_template, flash, request, redirect, url_for
+from flask_login import login_user, current_user, login_required
+from app import admin_permission
+from app.models import User, Role
 from .. import admin
 from ..forms import Login_Form, Register_Form, Edit_User_Form
 
@@ -35,26 +35,20 @@ def edit_user(user_id=1):
     return render_template("edit_user.html", form=form)
 
 
-@admin.route("/register/", methods=["GET", "POST"])
+#@admin.route("/register/", methods=["GET", "POST"])
 def register():
     form = Register_Form()
     if form.validate_on_submit():
         user = User.create_user(
-            form.name.data, form.email.data, form.password.data, role_id=2)
+            form.name.data, form.email.data, form.password.data, role_id='qkwjekasjkdajksldjaklsfasf')
         if user.register_self():
-            flash("Register Successful")
-            login_user(user)
-            return redirect(request.args.get('next') or url_for("front_end.all_posts"))
+            user.login(False)
+            return redirect(request.args.get('next') or url_for("front_end.home"))
     return render_template("register.html", form=form)
 
 
 @admin.route("/login/", methods=["GET", "POST"])
 def login():
-    # Delete the auto login function before deployment
-    if current_app.config["AUTO_LOGIN"]:
-        user = User.get_item_by_id(1)
-        User.login(user, True)
-        return redirect(request.args.get('next') or url_for("front_end.all_posts"))
     # delete the above auto login function before deployment
     form = Login_Form()
     if form.validate_on_submit():
@@ -62,7 +56,7 @@ def login():
         if user is not None:
             user.login(form.remember_me.data)
             flash("Login Successful, Welcome {0} !".format(user.name))
-            return redirect(request.args.get('next') or url_for("front_end.all_posts"))
+            return redirect(request.args.get('next') or url_for("front_end.home"))
     return render_template("login.html", form=form)
 
 
@@ -70,4 +64,4 @@ def login():
 @login_required
 def logout():
     User.logout()
-    return redirect(request.args.get('next') or url_for("front_end.all_posts"))
+    return redirect(request.args.get('next') or url_for("front_end.home"))

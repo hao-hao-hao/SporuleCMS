@@ -24,7 +24,7 @@ def new_post():
                                 for category in Category.get_all_items()]
     if form.load_form_to_object(post, query="post"):
         post.add_itself()
-        return redirect(session['referrer_url'])
+        return redirect(post.url())
     return render_template("edit_post.html", form=form)
 
 
@@ -47,7 +47,7 @@ def edit_post(post_id):
         post.tags_temp = ','.join(t.name for t in post.tags)
         form.load_object_to_form(post)
         if form.load_form_to_object(post, query='post'):
-            return redirect(session['referrer_url'])
+            return redirect(post.url())
         return render_template("edit_post.html", form=form)
     else:
         # raise 403 Forbidden for insuficcient permissions

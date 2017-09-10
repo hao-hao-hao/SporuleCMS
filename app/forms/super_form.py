@@ -11,8 +11,6 @@ class Super_Form(Form):
         """ fill object to the form if is a GET request
         """
         if request.method == "GET":
-            # add referrer url to the session
-            session['referrer_url'] = request.referrer
             fields = list(self.data.keys())
             for field in fields:
                 self[field].data = getattr(obj, field)

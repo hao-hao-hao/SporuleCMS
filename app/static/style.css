@@ -125,13 +125,17 @@ body a{
 .footer-user, .footer-info, .footer-info2, .footer-status, .footer-info3{
 	text-align:center;
 }
-.footer-user, .footer-status{
+.footer-user, .footer-status, .footer-status a{
 	background: #e2f92d;
 	color: #33333c;
 	font-weight: bold;
 }
-.footer-path, .footer-info{
+.footer-info{
 	color: #73e49c;
+}
+.footer-path{
+	background:purple;
+	color:white;
 }
 .footer-info2{
 	background:grey;

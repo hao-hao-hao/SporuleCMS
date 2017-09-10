@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Sporule CMS{% block sub_title %}{% endblock %}</title>
+		<title>Sporule Blog {% block sub_title %}{% endblock %}</title>
 		<!--font awsome icon-->
 		<script src="https://use.fontawesome.com/c26aec403d.js"></script>
 		<!--jquery-->
@@ -35,26 +35,26 @@
 		<div class='top-nav pure-menu pure-menu-horizontal'>
 			<ul class='pure-menu-list'>
 				<li class='pure-menu-item pure-menu-selected'><a href='{{url_for('front_end.home')}}'>Home Page</a></li>
-				<li class='pure-menu-item'><a href='{{url_for('admin.admin_home')}}'>Admin Page</a></li>
+				{%if current_user.is_authenticated %}{% if current_user.is_admin() %}<li class='pure-menu-item pure-menu-selected'><a href='{{url_for('admin.admin_home')}}'>Admin Page</a></li>{% endif %}{% endif %}
 			</ul>
 		</div>
 		<div class='content'>
 			<div class='pure-g'>
-				<div class='pure-u-6-24 left-panel'>
+				<div class='pure-u-5-24 left-panel'>
 					{% block left_panel %}{% endblock %}
 				</div>
-				<div class='pure-u-18-24 right-panel'>
+				<div class='pure-u-19-24 right-panel'>
 					{% block right_panel %}{% endblock %}
 				</div>
 			</div>
 		</div>
 		<div class='footer'>
 			<div class = 'pure-g'>
-				<div class = 'pure-u-2-24 footer-user'>USER</div>
-				<div class = 'pure-u-10-24 footer-path'>{{ request.path }}</div>
-				<div class = 'pure-u-3-24 footer-info'>sporulecms</div>
+				<div class = 'pure-u-2-24 footer-user'>{% if current_user.is_authenticated %}{{current_user.name}}{% else %} USER{% endif %}</div>
+				<div class = 'pure-u-10-24 footer-path'>{{ request.path[:30] }}</div>
+				<div class = 'pure-u-3-24 footer-info'>python</div>
 				<div class = 'pure-u-3-24 footer-info2'>utf-8[unix]</div>
-				<div class = 'pure-u-6-24 footer-status'>{% block status %}   90% 36/40 ln: 72{% endblock%}</div>
+				<div class = 'pure-u-6-24 footer-status'>{% block status %}<a href='http://www.Sporule.com'>Powered by Sporule</a>{% endblock%}</div>
 			</div>
 		</div>
 
