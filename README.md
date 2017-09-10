@@ -1,5 +1,3 @@
 # SporuleCMS
 
-<<<<<<< HEAD
-Python CMS System
-=======
+A Python CMS System that is written by using Flask
