@@ -1,6 +1,7 @@
 import re
 from flask import url_for, redirect, request
 from flask_principal import UserNeed, RoleNeed
+from flask_migrate import Migrate
 
 
 class Helper():
@@ -57,6 +58,7 @@ class Helper():
         """initialize 3rd party exntesions
         """
         db.init_app(app)
+        Migrate(app, db)
         # set default redirect login page
         login_manager.login_view = "admin.login"
         login_manager.init_app(app)

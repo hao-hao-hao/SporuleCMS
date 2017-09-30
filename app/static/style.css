@@ -71,6 +71,9 @@ body a{
 .top-nav .pure-menu-item {
 	margin: 0 1em 0 0;
 }
+.right{
+	float:right;
+}
 .left-panel, .right-panel, .content{
 	height:90vh;
 }

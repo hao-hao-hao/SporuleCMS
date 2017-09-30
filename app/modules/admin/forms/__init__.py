@@ -4,3 +4,4 @@ from .edit_post_form import Edit_Post_Form
 from .edit_user_form import Edit_User_Form
 from .edit_navigation_form import Edit_Navigation_Form
 from .edit_category_form import Edit_Category_Form
+from .edit_tag_form import Edit_Tag_Form

@@ -53,7 +53,7 @@ class Post(db.Model, DB_Base):
             tag_string_cap = tag_string.strip().title()
             tag = Tag.get_item_by_name(tag_string_cap)
             if tag is None:
-                tag = Tag(name=tag_string_cap)
+                tag = Tag(name=tag_string_cap,is_collection = False)
             self.tags.append(tag)
 
     # generate slugified title for permanent links

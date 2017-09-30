@@ -1,0 +1,12 @@
+{% extends "admin_base.html" %}
+{% block content %}
+<h1>Edit Tag - {{form.name.data}}</h1>
+<form method="POST" action="">
+    {{ form.csrf_token }}
+    <div>{{ form.name.label }}</div>
+    <div>{{ form.name(size=100) }}</div>
+    <div>{{ form.is_collection.label }}</div>
+    <div>{{ form.is_collection}}</div>
+    <input type="submit" value="Update">
+</form>
+{% endblock %}

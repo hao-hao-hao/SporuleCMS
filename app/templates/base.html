@@ -36,6 +36,7 @@
 			<ul class='pure-menu-list'>
 				<li class='pure-menu-item pure-menu-selected'><a href='{{url_for('front_end.home')}}'>Home Page</a></li>
 				{%if current_user.is_authenticated %}{% if current_user.is_admin() %}<li class='pure-menu-item pure-menu-selected'><a href='{{url_for('admin.admin_home')}}'>Admin Page</a></li>{% endif %}{% endif %}
+{%if current_user.is_authenticated %}{% if current_user.is_admin() %}<li class='pure-menu-item pure-menu-selected right'><a href='{{url_for('admin.new_post')}}'>New Post</a></li>{% endif %}{% endif %}
 			</ul>
 		</div>
 		<div class='content'>
