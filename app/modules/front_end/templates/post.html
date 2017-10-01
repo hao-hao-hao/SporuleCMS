@@ -5,6 +5,7 @@
 	<div class="post-meta">Category: {{post.category.name}}| Tags:
 		{% for tag in post.tags %}
 		{{tag.name}}
+		{% if tag != post.tags[-1] %},{% endif%}
 		{% endfor %}
 		{%if current_user.is_authenticated %}{% if current_user.is_owner_or_admin(post.id) %}| <a href ='{{post.edit_url()}}'>Edit</a>{% endif %}{% endif %}
 		| {{post.post_date.date()}}
