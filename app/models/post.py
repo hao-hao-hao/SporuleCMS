@@ -27,7 +27,7 @@ class Post(db.Model, DB_Base):
 
     @staticmethod
     def get_all_items_pagination(page=1, per_page=10, error_out=True):
-        posts = Post.query.paginate(page, per_page, error_out)
+        posts = Post.query.order_by(db.desc(Post.post_date)).paginate(page, per_page, error_out)
         return posts
 
     @staticmethod
