@@ -7,7 +7,7 @@
 		{{tag.name}}
 		{% endfor %}
 		{%if current_user.is_authenticated %}{% if current_user.is_owner_or_admin(post.id) %}| <a href ='{{post.edit_url()}}'>Edit</a>{% endif %}{% endif %}
-		| {{post.post_date}}
+		| {{post.post_date.date()}}
 
 	</div>
 	<div class="post-content">{{post.content|safe}}</div>
