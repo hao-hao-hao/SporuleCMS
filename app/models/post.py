@@ -27,7 +27,8 @@ class Post(db.Model, DB_Base):
 
     @staticmethod
     def get_all_items_pagination(page=1, per_page=10, error_out=True):
-        posts = Post.query.order_by(db.desc(Post.post_date)).paginate(page, per_page, error_out)
+        posts = Post.query.order_by(db.desc(Post.post_date)).paginate(
+            page, per_page, error_out)
         return posts
 
     @staticmethod
@@ -45,6 +46,14 @@ class Post(db.Model, DB_Base):
         self.user_id = user.id
         DB_Base.add_itself(self)
 
+    def generate_excerpt(self, length):
+        if len(self.content) < length:
+            return self.content
+        excerpt = self.content[0:length]
+        if '<code>' in excerpt and '</code>' not in excerpt:
+            excerpt += '</code>'
+        return excerpt
+
     def generate_tags(self):
         self.tags = []
         tags_list = self.tags_temp.split(',')
@@ -53,7 +62,7 @@ class Post(db.Model, DB_Base):
             tag_string_cap = tag_string.strip().title()
             tag = Tag.get_item_by_name(tag_string_cap)
             if tag is None:
-                tag = Tag(name=tag_string_cap,is_collection = False)
+                tag = Tag(name=tag_string_cap, is_collection=False)
             self.tags.append(tag)
 
     # generate slugified title for permanent links

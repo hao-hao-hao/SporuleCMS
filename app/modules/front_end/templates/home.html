@@ -7,13 +7,14 @@
 	<div class="post-meta">Category: {{post.category.name}}| Tags:
 		{% for tag in post.tags %}
 		{{tag.name}}
+		{% if tag != post.tags[-1] %},{% endif%}
 		{% endfor %}
 		{%if current_user.is_authenticated %}{% if current_user.is_owner_or_admin(post.id) %}| <a href ='{{post.edit_url()}}'>Edit</a>{% endif %}{% endif %}
 		| {{post.post_date}}
 	</div>
-	<div class="post-content">{{post.content[:800]|safe}}
+	<div class="post-content">{{post.generate_excerpt(800)|safe}}
 	</div>
-	{% if post.content|length > 500 %}<div class='read-more-tag'><a href='{{post.url()}}'>Read More.......</a></div>{% endif %}
+	{% if post.content|length > 800 %}<div class='read-more-tag'><a href='{{post.url()}}'>Read More.......</a></div>{% endif %}
 </article>
 {% endfor %}
 <div class="pagination">
