@@ -20,15 +20,10 @@ html, button, input, select, textarea,
 	font-family: 'Droid Sans Mono', monospace!important;
 }
 
-/*editor styling */
-.w-e-text-container{
-	height:auto!important;
-	min-height:300px;
+.ck-editor__editable{
+	min-height:200px;
 }
-.w-e-toolbar{
-	background-color:#272726!important;
-	border: 1px solid #a5a5a5;
-}
+	
 
 /*editor end */
 

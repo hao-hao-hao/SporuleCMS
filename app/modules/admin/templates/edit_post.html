@@ -1,18 +1,23 @@
 ﻿{% extends "admin_base.html" %}
 {% block content %}
 <form method="POST" action="">
-    {{ form.csrf_token }}
-    <div>{{ form.title.label }}</div>
-    <div>{{ form.title(size=100) }}</div>
-    <div>{{form.category_id.label}}</div>
-    <div>{{form.category_id}}</div>
-    <div>{{ form.content.label }}</div>
-    <div>{{ form.content}}</div>
-    <div>{{ form.tags_temp.label }}</div>
-    <div>{{ form.tags_temp(size=100) }}</div>
-    <div>{{form.post_date.label }}</div>
-    <div>{{form.post_date}} - Use Future Date for Preset Release</div>
-    <input type="submit" value="Submit">
+	{{ form.csrf_token }}
+	<div>{{ form.title.label }}</div>
+	<div>{{ form.title(size=100) }}</div>
+	<div>{{form.category_id.label}}</div>
+	<div>{{form.category_id}}</div>
+	<div>{{ form.content.label }}</div>
+	<div>{{ form.content}}</div>
+	<div>{{ form.tags_temp.label }}</div>
+	<div>{{ form.tags_temp(size=100) }}</div>
+	<div>{{form.post_date.label }}</div>
+	<div>{{form.post_date}} - Use Future Date for Preset Release</div>
+	<input type="submit" value="Submit">
 </form>
+<!-- CK  Editor Module -->
+<script src="{{ url_for('static', filename='non_bower/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ url_for('static', filename='non_bower/ckeditor/config.js') }}"></script>
 <script>initial_editor()</script>
+
+
 {% endblock %}
