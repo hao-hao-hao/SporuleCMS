@@ -91,7 +91,6 @@ body a{
 }
 .left-panel ul {
 	margin:0 0 0 0;
-	padding:0;
 	list-style-type:none;
 }
 .left-panel ul i a{
@@ -102,6 +101,10 @@ body a{
 	border-width: 0 0 3px 0;
 	margin:1em 5em;
 	padding:1em;
+}
+.post-meta a, .post-content a{
+	color:#e2f92d;
+	text-decoration:underline;
 }
 .post-meta{
 	border-style:dotted;

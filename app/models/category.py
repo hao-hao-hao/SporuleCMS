@@ -1,4 +1,5 @@
 from app import db
+from app.decorators import links
 from app.models import DB_Base
 from flask import abort
 
@@ -20,3 +21,12 @@ class Category(db.Model, DB_Base):
         if category is None:
             abort(404)
         return category
+
+    @staticmethod
+    def get_item_by_name(name):
+        category = Category.query.filter_by(name=name).first()
+        return category
+
+    @links.permalink
+    def url(self):
+        return "front_end.category", {"category_name": self.name}
