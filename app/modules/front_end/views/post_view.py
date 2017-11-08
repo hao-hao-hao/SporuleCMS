@@ -9,5 +9,5 @@ from datetime import datetime
 def post(post_id, slug=''):
     post = Post.get_item_by_id(post_id)
     if(post.post_date <= datetime.now()):
-        return render_template('post.html', post=post)
+        return render_template('post.html', post=post, title=post.title)
     abort(404)
