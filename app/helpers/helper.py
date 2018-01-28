@@ -53,6 +53,22 @@ class Helper():
                 Navigation.get_all_items())
             return dict(navigations=navigations)
 
+        @app.context_processor
+        def inject_category():
+            """Inject categories into context_processor
+            """
+            from app.models import Category
+            categories = Category.get_all_items()
+            return dict(categories=categories)
+
+        @app.context_processor
+        def inject_collection():
+            """Inject collections into context_processor
+            """
+            from app.models import Tag
+            collections = Tag.get_all_collections()
+            return dict(collections=collections)
+
     @staticmethod
     def initial_extensions(app, db, login_manager, principals, bcrypt):
         """initialize 3rd party exntesions

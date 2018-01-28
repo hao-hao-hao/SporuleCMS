@@ -6,12 +6,13 @@ from ..forms import Edit_Post_Form
 
 
 @admin.route("/posts/")
+@admin.route("/posts/<int:page>")
 @login_required
-def all_posts():
+def all_posts(page=1):
     posts = current_user.posts
     # return all posts if user is admin.
     if current_user.is_admin():
-        posts = Post.get_all_items()
+        posts = Post.get_all_items_pagination(page=page)
     return render_template("all_posts.html", posts=posts)
 
 

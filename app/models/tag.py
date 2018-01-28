@@ -15,6 +15,11 @@ class Tag(db.Model, DB_Base):
         return tags
 
     @staticmethod
+    def get_all_collections():
+        collections = Tag.query.filter_by(is_collection=True)
+        return collections
+
+    @staticmethod
     def get_item_by_id(id):
         tag = Tag.query.get(id)
         return tag
@@ -27,4 +32,4 @@ class Tag(db.Model, DB_Base):
     @links.permalink
     # generate the front end view url for this post
     def url(self):
-        return "front_end.tag", {"tag_name":self.name}
+        return "front_end.tag", {"tag_name": self.name}

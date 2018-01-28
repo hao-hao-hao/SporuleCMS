@@ -78,6 +78,7 @@ body a{
 }
 .left-panel-item, .left-panel-item a{
 	color:#358bf9;
+	margin:0.1em;
 }
 .left-panel{
 	font-size:1.3em;
@@ -94,7 +95,7 @@ body a{
 	list-style-type:none;
 }
 .left-panel ul i a{
-	margin:0 0 0 1em;
+	margin:0 0 0 0.4em;
 }
 .post-wrapper{
 	border-style:double;

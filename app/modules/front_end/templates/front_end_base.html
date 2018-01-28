@@ -20,13 +20,31 @@
 	/home{{request.path}}
 </div>
 <ul>
+	{% if categories is not none %}
+	<li class='left-panel-item'><i class="fa fa-caret-right" aria-hidden="true"><a>Categories:</a></i></li>
+	<ul>
+	{% for category in categories recursive %}
+	<li class='left-panel-item'><i class="fa fa-caret-right" aria-hidden="true"><a href="{{category.url()}}">{{category.name}}</a></i></li>
+	{% endfor %}
+	</ul>
+	{% endif %}
 	{% if navigations is not none %}
-		{% for navigation in navigations recursive %}
-			<li class='left-panel-item'><i class="fa fa-caret-right" aria-hidden="true"><a href="{{navigation.link}}">{{navigation.name}}</a></i></li>
-			{%if navigation.children %}
-				<ul>{{loop(navigation.children)}}</ul>
-			{% endif %}
+	{% for navigation in navigations recursive %}
+	<li class='left-panel-item'><i class="fa fa-caret-right" aria-hidden="true"><a href="{{navigation.link}}">{{navigation.name}}</a></i></li>
+	{%if navigation.children %}
+	<ul>{{loop(navigation.children)}}</ul>
+	{% endif %}
+	{% endfor %}
+	{% endif %}
+
+	{% if collections is not none %}
+	<li class='left-panel-item'><i class="fa fa-caret-right" aria-hidden="true"><a>Collections:</a></i></li>
+	<ul>
+		{% for collection in collections recursive %}
+		<li class='left-panel-item'><i class="fa fa-caret-right" aria-hidden="true"><a href="{{collection.url()}}">{{collection.name}}</a></i></li>
 		{% endfor %}
+	</ul>
+	
 	{% endif %}
 
 </ul>
