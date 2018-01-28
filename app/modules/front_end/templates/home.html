@@ -2,7 +2,7 @@
 {% block content %}
 {% if posts.items is not none %}
 {% for post in posts.items %}
-<article class="post-wrapper">
+<div class="post-wrapper">
 	<div class="post-title"><a href='{{post.url()}}'><h1>{{post.title}}</h1></a></div>
 	<div class="post-meta">Category: <a href='{{post.category.url()}}'>{{post.category.name}}</a>| Tags:
 		{% for tag in post.tags %}
@@ -12,10 +12,10 @@
 		{%if current_user.is_authenticated %}{% if current_user.is_owner_or_admin(post.id) %}| <a href ='{{post.edit_url()}}'>Edit</a>{% endif %}{% endif %}
 		| {{post.post_date.date()}}
 	</div>
-	<div class="post-content">{{post.generate_excerpt(800)|safe}}
+	<div class="post-content">{{post.generate_excerpt(1500)|striptags}}
 	</div>
 	{% if post.content|length > 800 %}<div class='read-more-tag'><a href='{{post.url()}}'>Read More.......</a></div>{% endif %}
-</article>
+</div>
 {% endfor %}
 <div class="pagination">
 	{% for page in posts.iter_pages() %}
