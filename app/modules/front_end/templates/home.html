@@ -12,7 +12,7 @@
 		{%if current_user.is_authenticated %}{% if current_user.is_owner_or_admin(post.id) %}| <a href ='{{post.edit_url()}}'>Edit</a>{% endif %}{% endif %}
 		| {{post.post_date.date()}}
 	</div>
-	<div class="post-content">{{post.generate_excerpt(1500)|striptags}}
+	<div class="post-content">{{post.generate_excerpt(800)|safe}}
 	</div>
 	{% if post.content|length > 800 %}<div class='read-more-tag'><a href='{{post.url()}}'>Read More.......</a></div>{% endif %}
 </div>

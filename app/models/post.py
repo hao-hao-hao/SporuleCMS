@@ -1,4 +1,5 @@
 from app import db
+import re
 from app.decorators import links
 from flask import abort
 from flask_login import current_user
@@ -38,6 +39,21 @@ class Post(db.Model, DB_Base):
             abort(404)
         return post
 
+    @staticmethod
+    def close_all_tags(html):
+        pattern_find_open_tag = '<[a-zA-Z0-9&\"\'=\s:]+>'
+        pattern_find_close_tag = '<\/[a-zA-Z0-9&\"\'=\s:]+>'
+        open_tag = re.findall(pattern_find_open_tag, html)[::-1]
+        open_tag_clean = [x[1:-1].strip().split(' ')[0] for x in open_tag]
+        close_tag = re.findall(pattern_find_close_tag, html)
+        close_tag_clean = [x[2:-1].strip().split(' ')[0] for x in close_tag]
+        for tag in open_tag_clean:
+            if(tag in close_tag_clean):
+                close_tag_clean.remove(tag)
+            else:
+                html += '</' + tag + '>'
+        return html
+
     def add_itself(self, user=current_user):
         if self.post_date is None:
             self.post_date = datetime.now()
@@ -50,8 +66,7 @@ class Post(db.Model, DB_Base):
         if len(self.content) < length:
             return self.content
         excerpt = self.content[0:length]
-        if '<code>' in excerpt and '</code>' not in excerpt:
-            excerpt += '</code>'
+        excerpt = Post.close_all_tags(excerpt)
         return excerpt
 
     def generate_tags(self):
