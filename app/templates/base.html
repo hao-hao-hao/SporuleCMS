@@ -2,18 +2,26 @@
 <html>
 	<head>
 		<title>Sporule Blog {% block sub_title %}{% endblock %}</title>
+		<!--Google Analytics-->
+		<!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-NKJM3SJ');</script>
+		<!-- End Google Tag Manager -->
 		<!--font awsome icon-->
 		<script src="https://use.fontawesome.com/c26aec403d.js"></script>
 		<!--jquery-->
 		<script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
 		<!--custom script-->
 		<script src="{{url_for('static', filename='script.js')}}"></script>
-	<script src="{{ url_for('static', filename='non_bower/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js') }}"></script>
-	<script>hljs.initHighlightingOnLoad();</script>
+		<script src="{{ url_for('static', filename='non_bower/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js') }}"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
 		{% block script %}
 		{% endblock %}
 		<!--Syntax Highlighter Css-->
-<link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='non_bower/ckeditor/plugins/codesnippet/lib/highlight/styles/solarized_light.css') }}">
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='non_bower/ckeditor/plugins/codesnippet/lib/highlight/styles/solarized_light.css') }}">
 		<!--sdPure CSS-->
 		<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
 		<!--[if lte IE 8]>
@@ -30,11 +38,15 @@
 	  {% endblock %}
 	</head>
 	<body>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKJM3SJ"
+		    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
 		<div class='top-nav pure-menu pure-menu-horizontal'>
 			<ul class='pure-menu-list'>
 				<li class='pure-menu-item pure-menu-selected'><a href='{{url_for('front_end.home')}}'>Home Page</a></li>
 				{%if current_user.is_authenticated %}{% if current_user.is_admin() %}<li class='pure-menu-item pure-menu-selected'><a href='{{url_for('admin.admin_home')}}'>Admin Page</a></li>{% endif %}{% endif %}
-{%if current_user.is_authenticated %}{% if current_user.is_admin() %}<li class='pure-menu-item pure-menu-selected right'><a href='{{url_for('admin.new_post')}}'>New Post</a></li>{% endif %}{% endif %}
+				{%if current_user.is_authenticated %}{% if current_user.is_admin() %}<li class='pure-menu-item pure-menu-selected right'><a href='{{url_for('admin.new_post')}}'>New Post</a></li>{% endif %}{% endif %}
 			</ul>
 		</div>
 		<div class='content'>
