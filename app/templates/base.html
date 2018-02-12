@@ -2,14 +2,28 @@
 <html>
 	<head>
 		<title>Sporule Blog {% block sub_title %}{% endblock %}</title>
-		<!--Google Analytics-->
-		<!-- Google Tag Manager -->
-		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-		})(window,document,'script','dataLayer','GTM-NKJM3SJ');</script>
-		<!-- End Google Tag Manager -->
+		<!--favicon Start-->
+			<link rel="shortcut icon" href="/static/images/favicon/favicon.ico">
+	<link rel="icon" sizes="16x16 32x32 64x64" href="/static/images/favicon/favicon.ico">
+	<link rel="icon" type="image/png" sizes="196x196" href="/static/images/favicon/favicon-192.png">
+	<link rel="icon" type="image/png" sizes="160x160" href="/static/images/favicon/favicon-160.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon/favicon-96.png">
+	<link rel="icon" type="image/png" sizes="64x64" href="/static/images/favicon/favicon-64.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon/favicon-32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon/favicon-16.png">
+	<link rel="apple-touch-icon" href="/static/images/favicon/favicon-57.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/static/images/favicon/favicon-114.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/static/images/favicon/favicon-72.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/static/images/favicon/favicon-144.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/static/images/favicon/favicon-60.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/static/images/favicon/favicon-120.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/static/images/favicon/favicon-76.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/static/images/favicon/favicon-152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/static/images/favicon/favicon-180.png">
+	<meta name="msapplication-TileColor" content="#FFFFFF">
+	<meta name="msapplication-TileImage" content="/static/images/favicon/favicon-144.png">
+	<meta name="msapplication-config" content="/static/images/favicon/browserconfig.xml">	
+		<!--favicon End-->
 		<!--font awsome icon-->
 		<script src="https://use.fontawesome.com/c26aec403d.js"></script>
 		<!--jquery-->
@@ -38,10 +52,6 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 	  {% endblock %}
 	</head>
 	<body>
-		<!-- Google Tag Manager (noscript) -->
-		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKJM3SJ"
-		    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-		<!-- End Google Tag Manager (noscript) -->
 		<div class='top-nav pure-menu pure-menu-horizontal'>
 			<ul class='pure-menu-list'>
 				<li class='pure-menu-item pure-menu-selected'><a href='{{url_for('front_end.home')}}'>Home Page</a></li>
