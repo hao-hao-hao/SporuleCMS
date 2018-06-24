@@ -33,7 +33,7 @@ class Post(db.Model, DB_Base):
         return posts
 
     @staticmethod
-    def get_all_items_pagination_admin(page=1,per_page=20,error_out=True):
+    def get_all_items_pagination_admin(page=1,per_page=30,error_out=True):
         posts = Post.query.order_by(db.desc(Post.post_date)).paginate(page,per_page,error_out)
         return posts
 
