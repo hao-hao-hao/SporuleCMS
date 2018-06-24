@@ -12,7 +12,7 @@ def all_posts(page=1):
     posts = current_user.posts
     # return all posts if user is admin.
     if current_user.is_admin():
-        posts = Post.get_all_items_pagination(page=page)
+        posts = Post.get_all_items_pagination_admin(page=page)
     return render_template("all_posts.html", posts=posts)
 
 

@@ -6,12 +6,14 @@
         <td>Title</td>
         <td>Content</td>
         <td>Category</td>
+	<td>Publish Date</td>
     </tr>
     {% if posts.items is not none %}
         {% for post in posts.items %}
         <tr>
             <td>{{post.title}}</td>
             <td>{{post.category.name}}</td>
+	    <td>{{post.post_date}}</td>
             <td><a href="{{url_for('admin.edit_post',post_id=post.id)}}">Edit</a></td>
             <td><a href="{{url_for('admin.delete_post',post_id=post.id)}}">Delete</a></td>
         </tr>
